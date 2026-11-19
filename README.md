@@ -13,7 +13,7 @@
 Как плагин Claude Code:
 
 ```bash
-claude plugin marketplace add <your-github-username>/course-builder-skill
+claude plugin marketplace add plazm04ka/course-builder-skill
 claude plugin install course-builder@course-builder-skill
 ```
 
