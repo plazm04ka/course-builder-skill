@@ -1,0 +1,6 @@
+{
+  "name": "course-builder",
+  "description": "Builds client courses: step-by-step brief via forms, critical deep research, course plan, fixes and risk review, production (videos, PDF, Word). Bundles the unslop design skill by Damir Sokolovsky (CC BY 4.0).",
+  "version": "1.0.0",
+  "license": "MIT"
+}

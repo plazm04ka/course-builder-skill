@@ -1,0 +1,7 @@
+{
+  "name": "course-builder-skill",
+  "owner": { "name": "course-builder-skill" },
+  "plugins": [
+    { "name": "course-builder", "source": "./", "description": "Course builder skill with bundled unslop design skill" }
+  ]
+}
