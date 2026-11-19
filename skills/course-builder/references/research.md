@@ -1,58 +1,58 @@
-# Метод глубокого критического исследования
+# Deep critical research method
 
-Задача — понять тему лучше, чем её сформулировал заказчик, и собрать для курса только проверенное и нужное ученику.
+The goal is to understand the topic better than the client described it, and to put into the course only what is verified and what the learner needs.
 
-Скепсис живёт **внутри исследования**. В курс попадают уже проверенные выводы, изложенные ясно. Курс, где каждая фраза обвешана «но есть мнение…», не учит — он путает.
+Skepticism lives **inside the research**. The course gets the verified conclusions, stated clearly. A course where every sentence is hedged with "but some say…" doesn't teach; it confuses.
 
-## Шаг 1. Разобрать исходные данные
+## Step 1. Break down the inputs
 
-- Материалы заказчика (если есть): выпиши ключевые тезисы, термины, фирменные подходы. Отметь, что из этого — проверяемые факты, что — мнение/опыт автора, что — маркетинг.
-- Раскидка по темам (если материалов нет): превращай каждую тему в 2–3 исследовательских вопроса.
+- Client materials (if any): list the key claims, terms and signature approaches. Mark which are verifiable facts, which are the author's opinion/experience, and which are marketing.
+- Topic outline (if there are no materials): turn each topic into 2–3 research questions.
 
-## Шаг 2. Поставить всё под вопрос
+## Step 2. Question everything
 
-По каждому тезису/теме:
+For each claim/topic:
 
-1. **Верно ли это?** Есть ли первоисточник? Что говорят исследования, стандарты, официальная документация?
-2. **Актуально ли?** Законы, версии ПО, рынки, медицинские рекомендации меняются. Укажи дату, на которую верны данные.
-3. **Для этой ли аудитории?** Подходит ли уровню и ситуации ученика из вопроса 3?
-4. **Что упущено?** Какие шаги/знания нужны ученику для ответа на его вопрос, но не названы заказчиком?
-5. **Что лишнее?** Что не приближает ученика к ответу?
-6. **Где спор?** Есть ли серьёзные эксперты с противоположной позицией? Насколько силён консенсус?
-7. **Какие мифы в нише?** Во что аудитория верит неверно.
-8. **Сомнение к себе:** не подтверждаю ли я свою первую гипотезу? Поищи данные против неё.
+1. **Is it true?** Is there a primary source? What do studies, standards and official documentation say?
+2. **Is it current?** Laws, software versions, markets and medical guidance change. State the date the data is valid for.
+3. **Is it for this audience?** Does it fit the learner's level and situation from question 3?
+4. **What is missing?** Which steps/knowledge does the learner need to answer their question that the client didn't name?
+5. **What is extra?** What doesn't move the learner closer to the answer?
+6. **Where is the dispute?** Are there serious experts with the opposite view? How strong is the consensus?
+7. **What myths exist in the niche?** What does the audience wrongly believe?
+8. **Doubt yourself:** am I just confirming my first hypothesis? Look for evidence against it.
 
-## Шаг 3. Источники
+## Step 3. Sources
 
-- Используй скилл `deep-research` или WebSearch, если доступны. Если нет — честно скажи, что исследование опирается на знания модели до даты среза, и пометь, что нужно проверить свежими данными.
-- Приоритет: первоисточники (научные статьи, обзоры, стандарты, законы, официальная документация) > экспертные книги > качественная журналистика > блоги и соцсети.
-- Для важного факта — два независимых источника. Цифры — с источником и годом.
-- Никогда не выдумывай источники, статистику и цитаты. Не нашёл — так и скажи.
+- Use the `deep-research` skill or WebSearch if available. If not, say honestly that the research relies on the model's knowledge up to its cutoff, and flag what needs checking against fresh data.
+- Priority: primary sources (papers, reviews, standards, laws, official documentation) > expert books > quality journalism > blogs and social media.
+- Two independent sources for any important fact. Numbers come with a source and a year.
+- Never invent sources, statistics or quotes. If you didn't find it, say so.
 
-## Шаг 4. Классифицировать результат
+## Step 4. Classify the results
 
-- **Консенсус** — можно утверждать в курсе уверенно.
-- **Спорно** — подать как спорное (с позициями сторон) или не включать.
-- **Миф / ошибка** — развенчать, если аудитория в это верит; иначе не упоминать.
-- **Пробел** — добавить, хотя заказчик не просил.
-- **Балласт** — предложить убрать.
+- **Consensus**: can be stated confidently in the course.
+- **Disputed**: present as disputed (with each side's position) or leave out.
+- **Myth / error**: debunk if the audience believes it; otherwise don't mention it.
+- **Gap**: add it, even though the client didn't ask.
+- **Ballast**: suggest removing it.
 
-## Шаг 5. Сводка для пользователя
+## Step 5. Summary for the user
 
-Не больше экрана:
+No more than one screen:
 
 ```
-Что подтвердилось: …
-Под сомнением (и что предлагаю): …
-Мифы, которые стоит развенчать: …
-Чего не хватает (добавить): …
-Что лишнее (убрать): …
-Ключевые источники: …
-Данные актуальны на: <дата>
+Confirmed: …
+In doubt (and what I suggest): …
+Myths worth debunking: …
+Missing (add): …
+Extra (remove): …
+Key sources: …
+Data valid as of: <date>
 ```
 
-Если тезисы заказчика расходятся с фактами — скажи прямо и тактично, предложи, как сохранить его позицию честно (например, подать как авторский подход, а не как факт).
+If the client's claims contradict the facts, say so directly and tactfully, and suggest how to keep their position honestly (for example, present it as the author's own approach rather than as fact).
 
-## YMYL-темы
+## YMYL topics
 
-Здоровье, финансы, право, безопасность, психология: только авторитетные источники, дисклеймеры в курсе, рекомендация, чтобы финальный контент проверил профильный специалист заказчика.
+Health, finance, law, safety, psychology: authoritative sources only, disclaimers in the course, and a recommendation that a qualified specialist on the client's side reviews the final content.

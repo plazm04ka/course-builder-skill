@@ -1,40 +1,40 @@
 # course-builder-skill
 
-Скилл для Claude Code, который ведёт создание учебного курса под конкретного заказчика:
+A Claude Code skill that guides building a training course for a specific client:
 
-1. **Интервью формами, по одному вопросу:** язык, тема и цели → длительность и наполненность → кто ученик и какой у него конкретный вопрос → формат (анимированные ролики кодом, фото-коллаж с озвучкой и монтажом, PDF, Word, слайды, интерактив…) → есть ли исходные материалы (если нет — раскидка по темам).
-2. **Глубокое критическое исследование** темы — всё под вопросом (в исследовании, не в курсе).
-3. **Черновик курса** по шаблону.
-4. **Правки и разбор проблем** — объём, аудитория, права, YMYL, производство.
-5. **Производство** — пилотный урок, затем масштаб; визуал проходит через **unslop**.
+1. **Interview with forms, one question at a time:** language, topic and goals → duration and depth → who the learner is and their concrete question → format (code-animated videos, photo collage with voiceover and editing, PDF, Word, slides, interactive…) → existing source materials (if none, a rough topic outline).
+2. **Deep critical research** on the topic, everything questioned (in the research, not in the course).
+3. **Course draft** from a template.
+4. **Fixes and risk review**: volume, audience, rights, YMYL, production.
+5. **Production**: pilot lesson first, then scale; visuals go through **unslop**.
 
-## Установка
+## Install
 
-Как плагин Claude Code:
+As a Claude Code plugin:
 
 ```bash
 claude plugin marketplace add plazm04ka/course-builder-skill
 claude plugin install course-builder@course-builder-skill
 ```
 
-Или вручную: скопируйте `skills/course-builder` и `skills/unslop` в `~/.claude/skills/`.
+Or manually: copy `skills/course-builder` and `skills/unslop` into `~/.claude/skills/`.
 
-## Структура
+## Structure
 
 ```
 skills/
 ├── course-builder/
 │   ├── SKILL.md
 │   └── references/
-│       ├── formats.md              # форматы и как их производить
-│       ├── research.md             # метод критического исследования
-│       ├── problems.md             # чек-лист рисков
-│       └── course-plan-template.md # шаблон плана курса
-└── unslop/                         # дизайн-скилл, см. ниже
+│       ├── formats.md              # formats and how to produce them
+│       ├── research.md             # critical research method
+│       ├── problems.md             # risk checklist
+│       └── course-plan-template.md # course plan template
+└── unslop/                         # design skill, see below
 ```
 
-## Благодарности
+## Credits
 
-`skills/unslop` — скилл **unslop**, созданный Damir Sokolovsky ([@heydamir](https://x.com/heydamir)), оригинал: https://github.com/heydamir/unslop. Включён без изменений (кроме удаления файла `agents/openai.yaml`) по лицензии [CC BY 4.0](skills/unslop/LICENSE). Используется для того, чтобы визуальные материалы курса не выглядели сгенерированными.
+`skills/unslop` is the **unslop** skill created by Damir Sokolovsky ([@heydamir](https://x.com/heydamir)), original: https://github.com/heydamir/unslop. Included unchanged (except for removing `agents/openai.yaml`) under [CC BY 4.0](skills/unslop/LICENSE). It is used so that course visuals don't look AI-generated.
 
-Остальной код — MIT.
+Everything else is MIT.

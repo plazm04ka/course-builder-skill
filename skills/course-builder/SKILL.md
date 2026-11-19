@@ -1,146 +1,146 @@
 ---
 name: course-builder
-description: Создание учебных курсов под конкретного заказчика — от брифа до готовых материалов (видео-ролики с анимацией в коде, фото-коллажи с озвучкой и монтажом, PDF, Word, слайды, интерактив). Проводит пошаговое интервью формами (язык/тема/цели → длительность и наполненность → аудитория и её конкретный вопрос → формат → исходные материалы), затем глубокое критическое исследование темы, план курса, правки и разбор рисков. Используй этот скилл всегда, когда пользователь хочет сделать, спроектировать, собрать или продать курс, обучающую программу, онлайн-школу, урок, тренинг, вебинарную серию, методичку, учебный модуль или «обучалку» для клиента — даже если слово «курс» не звучит прямо (например «нужно обучить сотрудников X», «заказчик хочет обучающие ролики», «сделай программу из 5 уроков»). Also triggers on English requests like build a course, create training, curriculum, e-learning module, lesson series.
-license: MIT (bundled unslop skill — CC-BY-4.0, Damir Sokolovsky)
+description: Builds training courses for a specific client, from brief to finished materials (code-animated videos, photo collages with voiceover and editing, PDF, Word, slides, interactive pages). Runs a step-by-step interview with forms (language/topic/goals → duration and depth → the learner and their concrete question → format → source materials), then deep critical research on the topic, a course plan, suggested fixes and a risk review. Use this skill whenever the user wants to make, design, assemble or sell a course, training program, online school, lesson, workshop, webinar series, study guide, e-learning module or curriculum for a client, even if the word "course" isn't used (for example "we need to train employees on X", "the client wants training videos", "make a 5-lesson program").
+license: MIT (bundled unslop skill is CC-BY-4.0, Damir Sokolovsky)
 ---
 
 # Course Builder
 
-Скилл ведёт заказ курса от первого контакта до плана производства. Главная идея: **курс — это ответ конкретному человеку на конкретный вопрос**. Всё, что не помогает этому человеку получить ответ, — лишнее, даже если это «интересно» или «академически правильно». Поэтому сначала мы выясняем, кто этот человек и какой у него вопрос, и только потом думаем о содержании и формате.
+This skill takes a course order from the first contact to a production plan. The core idea: **a course is an answer to a specific person's specific question**. Anything that doesn't help that person get the answer is extra, even if it is "interesting" or "academically correct". So first we find out who that person is and what their question is, and only then think about content and format.
 
-Работа идёт в пять фаз:
+The work has five phases:
 
-1. **Интервью** — 5 вопросов строго по очереди, каждый как форма (`AskUserQuestion`).
-2. **Глубокое исследование** — критическое, всё под сомнением.
-3. **Черновик курса** — структура, уроки, форматы, объём.
-4. **Правки и разбор проблем** — что можно улучшить, где риски.
-5. **Производство** — после согласования, по выбранным форматам.
+1. **Interview**: 5 questions strictly one at a time, each as a form (`AskUserQuestion`).
+2. **Deep research**: critical, everything questioned.
+3. **Course draft**: structure, lessons, formats, volume.
+4. **Fixes and risk review**: what can be improved, where the risks are.
+5. **Production**: after approval, in the chosen formats.
 
-Отвечай на языке пользователя (не путай с языком самого курса — их выясняем отдельно).
-
----
-
-## Фаза 1. Интервью
-
-### Как задавать вопросы
-
-- Каждый вопрос — отдельный вызов `AskUserQuestion`. Дождись ответа, прежде чем задавать следующий: ответ на предыдущий меняет варианты в следующем (например, для детской аудитории варианты длительности другие, чем для корпоративного обучения).
-- В одном вызове можно объединить 2–4 под-вопроса, если они про одну тему (так задуман вопрос 1: язык + цели). Но разные темы интервью в один вызов не смешивай.
-- Варианты ответов — конкретные и подогнанные под уже известное, а не абстрактные шаблоны. У пользователя всегда есть поле «Other» для своего ответа — опирайся на это, не плоди вариант «другое».
-- Если ответ уже есть в исходном сообщении пользователя — не спрашивай повторно; коротко подтверди («Тему понял: X») и переходи дальше. Спрашивать известное — значит тратить время заказчика.
-- Если пользователь отвечает расплывчато — не дави, прими как гипотезу и пометь для проверки в Фазе 2.
-- Перед каждым вопросом одна строка контекста: зачем спрашиваем.
-
-### Вопрос 1 — Язык, тема и цели заказчика
-
-Если темы нет в исходном сообщении, сначала спроси её одной строкой обычным текстом (тему нельзя угадать вариантами). Затем форма:
-
-- **Язык курса**: русский / английский / несколько языков (мультиязычная версия) — варианты подстрой под язык общения.
-- **Цель заказчика** (multiSelect): продавать курс как продукт / обучить своих сотрудников или клиентов / лид-магнит для привлечения / подтвердить экспертизу (личный бренд) / сертификация или требование регулятора.
-
-Цель определяет всё дальнейшее: курс-продукт должен «продавать» первым уроком, корпоративный — быть проверяемым, лид-магнит — коротким и вести к следующему шагу.
-
-### Вопрос 2 — Длительность и наполненность
-
-- **Общий объём**: мини (до 1 часа) / короткий (2–5 часов) / средний (6–20 часов) / большой (20+ часов, модули).
-- **Темп и плотность**: один урок = 3–7 минут микрообучения / 15–30 минут / длинные лекции 45+ / по модулям с перерывами на практику.
-- **Сколько практики**: только теория / теория + задания / в основном практика / с проверкой (тесты, итоговая работа).
-
-Подстрой варианты под цель из вопроса 1 (для лид-магнита большой курс не предлагай первым).
-
-### Вопрос 3 — Кто будет брать курс и какой у него вопрос
-
-Это самый важный вопрос. Курс без конкретного клиента — это учебник, а учебник никто не дочитывает.
-
-- **Кто ученик** (варианты — 3–4 правдоподобных портрета, выведенных из темы и цели): например для темы «инвестиции» — «новичок 25–35 без накоплений», «предприниматель с подушкой», «сотрудник банка».
-- **Уровень входа**: с нуля / базовые знания есть / практик, хочет систематизировать / эксперт, нужен узкий апгрейд.
-- **Конкретный вопрос ученика** — сформулируй 3–4 варианта в его словах, в форме вопроса от первого лица («Как мне …, чтобы …?»). Это и будет обещание курса.
-
-После ответа сформулируй для себя одной фразой: **«[Кто] приходит с вопросом [какой], и после курса может [что конкретно]»**. Покажи её пользователю — это фундамент, все дальнейшие решения проверяются на соответствие ей.
-
-### Вопрос 4 — Формат и наполненность материалов
-
-Форма с multiSelect:
-
-- **Анимированные ролики** — мультипликация/моушн-графика, сделанные кодом (Remotion/HTML-анимация в Claude Code), с озвучкой.
-- **Фото-коллаж + озвучка + монтаж** — слайд-шоу из изображений с эффектами, закадровым голосом, субтитрами, смонтированное Claude.
-- **PDF-курс / рабочая тетрадь** — свёрстанный документ с упражнениями.
-- **Word-курс (.docx)** — редактируемый документ, который заказчик сможет править сам.
-
-Если нужно больше вариантов (слайды .pptx, интерактивная HTML-страница с тестами, говорящая голова/аватар, аудиокурс/подкаст, текстовые уроки для платформы типа GetCourse/Teachable), задай второй под-вопрос в этой же форме или учти «Other». Для видео сразу уточни вторым под-вопросом: кто озвучивает — синтез голоса / голос заказчика / без озвучки (только титры).
-
-Подробности по каждому формату — что реально можно сделать, чем, сколько это стоит по усилиям и где подводные камни — в `references/formats.md`. Прочитай его, прежде чем обещать формат.
-
-### Вопрос 5 — Исходные материалы
-
-- **Есть ли у заказчика академическая/экспертная база**: да, готовые материалы (лекции, книги, методички, статьи) / частично, есть заметки и опыт / нет, только понимание темы.
-
-Дальше:
-- **Если есть** — попроси прислать файлы или пути к ним. Прочитай всё до исследования: материалы заказчика — главный источник его голоса и экспертизы, курс не должен им противоречить без явной причины.
-- **Если нет** — попроси примерную раскидку по темам: «какие 5–10 тем/блоков вы видите в курсе, хотя бы списком». Это не план, а сырьё. На его основе ты проведёшь исследование.
+Reply in the user's language (not to be confused with the language of the course itself, which is asked separately).
 
 ---
 
-## Фаза 2. Глубокое исследование
+## Phase 1. Interview
 
-Цель — понять тему лучше, чем её описал заказчик, и найти, где его представления неполны или неверны. Метод подробно описан в `references/research.md` — прочитай его перед началом.
+### How to ask
 
-Ключевой принцип: **в процессе исследования всё ставится под вопрос** — включая формулировки заказчика, популярные «истины» в нише и собственные первые выводы. Скепсис — это инструмент исследования, а не содержание курса: в готовый курс попадают проверенные выводы, сформулированные уверенно и понятно, без бесконечных оговорок.
+- Each question is a separate `AskUserQuestion` call. Wait for the answer before asking the next: the previous answer changes the options in the next one (for example, duration options for kids differ from those for corporate training).
+- One call may combine 2–4 sub-questions if they cover one topic (question 1 works that way: language + goals). Don't mix different interview topics in one call.
+- Options are concrete and fitted to what is already known, not abstract templates. The user always has an "Other" field for their own answer, so don't add an "other" option.
+- If the answer is already in the user's first message, don't ask again; confirm briefly ("Topic: X, got it") and move on. Asking for known things wastes the client's time.
+- If the user answers vaguely, don't push; take it as a hypothesis and mark it for checking in Phase 2.
+- Before each question, one line of context: why we're asking.
 
-Кратко:
-- Если доступен скилл `deep-research` или WebSearch — используй их; ищи первоисточники (исследования, стандарты, официальная документация), а не пересказы.
-- По каждой теме из раскидки задай вопросы: верно ли это? для этой ли аудитории? что упущено? что устарело? где спорно?
-- Отдели **консенсус** (можно утверждать) от **спорного** (нужно подать как спорное или убрать) и от **мифов** (важно развенчать, если аудитория в них верит).
-- Ищи то, что заказчик не упомянул, но без чего ученик не получит ответ на свой вопрос (пробелы).
-- Ищи то, что заказчик хочет включить, но что не отвечает на вопрос ученика (балласт).
+### Question 1: language, topic and client goals
 
-Результат фазы — короткая сводка для пользователя (не в курс): что подтвердилось, что под сомнением, что добавить, что убрать, ключевые источники.
+If the topic isn't in the first message, ask for it first in one line of plain text (a topic can't be guessed with options). Then the form:
+
+- **Course language**: offer the likely languages plus a multilingual version, fitted to the conversation language.
+- **Client goal** (multiSelect): sell the course as a product / train their own staff or customers / lead magnet / build expertise (personal brand) / certification or regulatory requirement.
+
+The goal shapes everything else: a course product must sell with its first lesson, a corporate course must be assessable, a lead magnet must be short and lead to the next step.
+
+### Question 2: duration and depth
+
+- **Total volume**: mini (under 1 hour) / short (2–5 hours) / medium (6–20 hours) / large (20+ hours, modules).
+- **Pace and density**: one lesson = 3–7 minute micro-learning / 15–30 minutes / long 45+ minute lectures / modules with practice breaks.
+- **How much practice**: theory only / theory + exercises / mostly practice / with assessment (quizzes, final project).
+
+Fit the options to the goal from question 1 (don't offer a large course first for a lead magnet).
+
+### Question 3: who takes the course and what their question is
+
+This is the most important question. A course without a concrete learner is a textbook, and nobody finishes textbooks.
+
+- **Who the learner is** (3–4 plausible profiles derived from the topic and goal): for example, for "investing": "beginner 25–35 with no savings", "business owner with a safety cushion", "bank employee".
+- **Entry level**: from zero / some basics / practitioner who wants structure / expert who needs a narrow upgrade.
+- **The learner's concrete question**: phrase 3–4 options in the learner's words, as a first-person question ("How do I …, so that …?"). This becomes the course promise.
+
+After the answer, write one sentence: **"[Who] comes with the question [which one], and after the course can [do what, concretely]"**. Show it to the user. It is the foundation; every later decision is checked against it.
+
+### Question 4: format and materials
+
+A multiSelect form:
+
+- **Animated videos**: animation/motion graphics made with code (Remotion/HTML animation in Claude Code), with voiceover.
+- **Photo collage + voiceover + editing**: a slideshow of images with effects, voiceover and subtitles, edited by Claude.
+- **PDF course / workbook**: a laid-out document with exercises.
+- **Word course (.docx)**: an editable document the client can change themselves.
+
+If more options are needed (.pptx slides, interactive HTML page with quizzes, talking head/avatar, audio course/podcast, text lessons for a platform like Teachable), ask a second sub-question in the same form or rely on "Other". For video, ask in a second sub-question who does the voice: synthetic voice / the client's voice / no voice (captions only).
+
+Details for each format (what can realistically be made, with what, how much effort, and the pitfalls) are in `references/formats.md`. Read it before promising a format.
+
+### Question 5: source materials
+
+- **Does the client have an academic/expert base**: yes, ready materials (lectures, books, guides, papers) / partly, notes and experience / no, only an understanding of the topic.
+
+Then:
+- **If yes**: ask for the files or paths. Read everything before the research: the client's materials are the main source of their voice and expertise, and the course shouldn't contradict them without a clear reason.
+- **If no**: ask for a rough topic outline: "which 5–10 topics/blocks do you see in the course, even just as a list". It is raw material, not a plan. You will research based on it.
 
 ---
 
-## Фаза 3. Черновик курса
+## Phase 2. Deep research
 
-Собери черновик по шаблону из `references/course-plan-template.md`. Основное:
+The goal is to understand the topic better than the client described it and to find where their picture is incomplete or wrong. The method is in `references/research.md`; read it before starting.
 
-- Обещание курса (фраза из вопроса 3).
-- Модули → уроки. У каждого урока: цель (что ученик сможет после), ключевые идеи, практика, формат, длительность.
-- Порядок от вопроса ученика, а не от логики учебника: первый урок должен дать ощутимый результат быстро — иначе ученик бросает.
-- Объём должен попадать в длительность из вопроса 2; если не попадает — скажи прямо и предложи, что урезать или расширить.
-- Для видео-форматов — оценка количества роликов и их длины; для документов — примерное число страниц.
+Key principle: **during research, everything is questioned**, including the client's wording, popular "truths" in the niche and your own first conclusions. Skepticism is a research tool, not course content: the finished course gets verified conclusions, stated confidently and clearly, without endless caveats.
 
-Покажи черновик целиком. Для удобства можно оформить его как документ или страницу, если пользователь захочет поделиться с заказчиком.
+In short:
+- If the `deep-research` skill or WebSearch is available, use it; look for primary sources (studies, standards, official documentation), not retellings.
+- For each topic in the outline, ask: is it true? is it for this audience? what's missing? what's outdated? what's disputed?
+- Separate **consensus** (can be stated) from **disputed** (present as disputed or remove) and from **myths** (worth debunking if the audience believes them).
+- Look for what the client didn't mention but without which the learner won't get their answer (gaps).
+- Look for what the client wants to include but which doesn't answer the learner's question (ballast).
 
----
-
-## Фаза 4. Правки и разбор проблем
-
-Сразу после черновика, не дожидаясь вопроса, дай два блока:
-
-**Возможные правки** — 3–7 конкретных предложений, каждое с причиной: «Перенести урок 4 в начало, потому что …», «Заменить видео в модуле 3 на PDF-чеклист: это справочная информация, её пересматривают, а не смотрят».
-
-**Возможные проблемы** — пройди чек-лист из `references/problems.md` и назови только реальные для этого курса риски, с вариантом решения: несоответствие объёма и длительности, размытая аудитория, юридические и YMYL-риски (медицина, финансы, право), права на изображения и музыку, сложность производства видео, устаревание материала, отсутствие проверки результата и т. д.
-
-Затем спроси (формой), что делаем: принять план / внести правки / пересмотреть аудиторию или формат. Повторяй цикл, пока план не согласован.
+The result of this phase is a short summary for the user (not for the course): what was confirmed, what is in doubt, what to add, what to remove, key sources.
 
 ---
 
-## Фаза 5. Производство
+## Phase 3. Course draft
 
-Только после согласования плана. Начни с одного пилотного урока в выбранном формате и покажи его — дешевле поправить один урок, чем двадцать. Потом масштабируй.
+Build the draft with the template in `references/course-plan-template.md`. The essentials:
 
-Маршрутизация по форматам (детали в `references/formats.md`):
-- PDF → скилл `pdf`; Word → скилл `docx`; слайды → скилл `pptx`.
-- Анимация кодом и монтаж вертикальных роликов → Remotion / скилл `it-reelsmaker`, если доступен; горизонтальные ролики — Remotion + ffmpeg.
-- Озвучка → коннектор ElevenLabs (`creative_generate_speech`), если подключён; иначе подготовь текст для диктора.
-- Интерактив с тестами → HTML-артефакт.
+- The course promise (the sentence from question 3).
+- Modules → lessons. Each lesson has: a goal (what the learner can do after it), key ideas, practice, format, duration.
+- Order follows the learner's question, not textbook logic: the first lesson should deliver a tangible result quickly, or the learner drops out.
+- The volume must match the duration from question 2; if it doesn't, say so plainly and suggest what to cut or expand.
+- For video formats, estimate the number and length of videos; for documents, the approximate page count.
 
-### Визуал без «ИИ-вида» — unslop
+Show the full draft. If the user wants to share it with the client, it can be formatted as a document or page.
 
-Всё визуальное, что делается кодом (HTML-страницы, интерактив, вёрстка PDF через HTML, сцены анимации, обложки), проходит через скилл **unslop** (автор Damir Sokolovsky, CC BY 4.0). Он находит типичные признаки сгенерированного дизайна — фиолетовые градиенты, свечения, эмодзи-ярлыки, кричащие тексты, неровные отступы — и задаёт курсу собственный характер из мира его темы.
+---
 
-- Если `unslop` доступен в списке скиллов — вызови его через Skill. Если нет — прочитай `../unslop/SKILL.md` (лежит рядом в этом репозитории) и следуй ему.
-- На пилотном уроке: полный процесс unslop. Его раздел Direction заполни из паспорта курса (Product = обещание курса, World = мир темы) — это станет дизайн-системой всего курса. Покажи направление вместе с пилотом.
-- Для остальных уроков: короткий аудит по `../unslop/references/signs.md` и правка найденного, без нового редизайна — курс должен выглядеть единым.
-- Детали — раздел 10 в `references/formats.md`.
+## Phase 4. Fixes and risk review
 
-Сценарий каждого видео пишется до визуала: текст озвучки → раскадровка → визуал → монтаж. Сценарий согласуй с пользователем, прежде чем тратить время на рендер.
+Right after the draft, without waiting to be asked, give two blocks:
+
+**Suggested fixes**: 3–7 concrete suggestions, each with a reason: "Move lesson 4 to the start, because …", "Replace the video in module 3 with a PDF checklist: it's reference material people revisit rather than watch".
+
+**Possible problems**: go through the checklist in `references/problems.md` and name only the risks that are real for this course, with a fix for each: volume vs. duration mismatch, vague audience, legal and YMYL risks (health, finance, law), image and music rights, video production complexity, outdated material, no way to check results, and so on.
+
+Then ask (with a form) what to do: accept the plan / make fixes / revisit the audience or format. Repeat the cycle until the plan is approved.
+
+---
+
+## Phase 5. Production
+
+Only after the plan is approved. Start with one pilot lesson in the chosen format and show it: fixing one lesson is cheaper than fixing twenty. Then scale.
+
+Routing by format (details in `references/formats.md`):
+- PDF → `pdf` skill; Word → `docx` skill; slides → `pptx` skill.
+- Code animation and vertical video editing → Remotion / the `it-reelsmaker` skill if available; horizontal videos → Remotion + ffmpeg.
+- Voiceover → the ElevenLabs connector (`creative_generate_speech`) if connected; otherwise prepare a script for a voice actor.
+- Interactive with quizzes → HTML artifact.
+
+### Visuals without the "AI look": unslop
+
+Everything visual made with code (HTML pages, interactives, PDF layout via HTML, animation scenes, covers) goes through the **unslop** skill (by Damir Sokolovsky, CC BY 4.0). It finds the typical signs of generated design (purple gradients, glows, emoji labels, shouty copy, uneven spacing) and gives the course its own character drawn from the world of its topic.
+
+- If `unslop` is in the skills list, call it via Skill. If not, read `../unslop/SKILL.md` (next to this skill in the repository) and follow it.
+- On the pilot lesson: the full unslop process. Fill its Direction section from the course passport (Product = the course promise, World = the world of the topic); it becomes the design system for the whole course. Show the direction together with the pilot.
+- For the remaining lessons: a short audit against `../unslop/references/signs.md` and fixes for what it finds, with no new redesign, so the course looks consistent.
+- Details in section 10 of `references/formats.md`.
+
+Each video's script is written before the visuals: voiceover text → storyboard → visuals → edit. Get the script approved by the user before spending time on rendering.

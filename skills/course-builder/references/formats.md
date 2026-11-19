@@ -1,114 +1,114 @@
-# Форматы курса: что можно сделать и как
+# Course formats: what can be made and how
 
-Прочитай перед тем, как обещать заказчику формат. Для каждого: когда подходит, как делается, трудоёмкость, подводные камни.
+Read this before promising a format to the client. For each one: when it fits, how it is made, effort, and pitfalls.
 
-## Содержание
-1. Анимированные ролики (код-анимация)
-2. Фото-коллаж + озвучка + монтаж
-3. PDF-курс / рабочая тетрадь
-4. Word-курс (.docx)
-5. Слайды (.pptx)
-6. Интерактивная HTML-страница
-7. Аудиокурс
-8. Аватар / говорящая голова
-9. Как выбирать формат под урок
-10. Визуальное качество (unslop)
+## Contents
+1. Animated videos (code animation)
+2. Photo collage + voiceover + editing
+3. PDF course / workbook
+4. Word course (.docx)
+5. Slides (.pptx)
+6. Interactive HTML page
+7. Audio course
+8. Avatar / talking head
+9. Choosing a format per lesson
+10. Visual quality (unslop)
 
 ---
 
-## 1. Анимированные ролики (код-анимация в Claude Code)
+## 1. Animated videos (code animation in Claude Code)
 
-**Подходит:** объяснение процессов, схем, причинно-следственных связей, абстрактных понятий; вводные уроки; курсы-продукты, где важна «упаковка».
+**Fits:** explaining processes, diagrams, cause and effect, abstract concepts; intro lessons; course products where packaging matters.
 
-**Как делается:**
-1. Сценарий: текст озвучки по сценам (1 сцена ≈ 1 мысль, 5–15 секунд).
-2. Озвучка: ElevenLabs (`creative_generate_speech`) или голос заказчика. Озвучка задаёт тайминг — делай её до анимации.
-3. Анимация: Remotion (React-компоненты → mp4) или HTML/CSS/SVG-анимация, записанная в видео. Стиль — моушн-графика: фигуры, иконки, текст, диаграммы, простые персонажи из геометрии.
-4. Субтитры по словам из транскрипции озвучки.
-5. Музыка — только лицензионная или сгенерированная с коммерческими правами.
-6. Рендер: 1920×1080 для курса, 1080×1920 для вертикальных тизеров.
+**How it is made:**
+1. Script: voiceover text split into scenes (1 scene ≈ 1 idea, 5–15 seconds).
+2. Voiceover: ElevenLabs (`creative_generate_speech`) or the client's own voice. The voiceover sets the timing, so record it before animating.
+3. Animation: Remotion (React components → mp4) or HTML/CSS/SVG animation recorded to video. Style is motion graphics: shapes, icons, text, charts, simple geometric characters.
+4. Word-level subtitles from the voiceover transcript.
+5. Music: licensed only, or generated with commercial rights.
+6. Render: 1920×1080 for the course, 1080×1920 for vertical teasers.
 
-**Трудоёмкость:** высокая. Для курса на 20 роликов заложи время на пилот и шаблонизацию (общие компоненты сцен, единые цвета/шрифты).
+**Effort:** high. For a 20-video course, budget time for a pilot and for templating (shared scene components, one set of colors and fonts).
 
-**Подводные камни:**
-- «Мультики» в смысле студийной персонажной анимации кодом на приемлемом уровне не делаются — честно скажи заказчику, что получится моушн-графика/инфографика, и покажи пример на пилоте.
-- Нужны Node.js, Remotion, ffmpeg. Проверь окружение до обещаний.
-- Правки в анимации дороже, чем в тексте — сценарий согласуй заранее.
-- Кадры анимации — это тоже интерфейс: прогоняй стиль сцен через unslop (раздел 10), иначе ролики выглядят «сгенерированными» (фиолетовые градиенты, свечения, эмодзи).
+**Pitfalls:**
+- "Cartoons" in the sense of studio character animation cannot be made with code at an acceptable level. Tell the client honestly that the result will be motion graphics / infographics, and show it on the pilot.
+- Needs Node.js, Remotion and ffmpeg. Check the environment before promising.
+- Edits to animation cost more than edits to text, so get the script approved first.
+- Animation frames are also an interface: run the scene style through unslop (section 10), or the videos will look "generated" (purple gradients, glows, emoji).
 
-## 2. Фото-коллаж + озвучка + монтаж
+## 2. Photo collage + voiceover + editing
 
-**Подходит:** истории, кейсы, исторические темы, обзоры; когда нужно быстро и бюджетно сделать видео.
+**Fits:** stories, case studies, historical topics, overviews; when video has to be quick and cheap.
 
-**Как делается:**
-1. Сценарий озвучки → список кадров (что показываем на каждой фразе).
-2. Изображения: фото заказчика / сток с лицензией / сгенерированные (с раскрытием, если это важно для доверия).
-3. Монтаж в ffmpeg или Remotion: эффект Кена Бёрнса (медленный зум/панорама), переходы, титры, плашки с ключевыми тезисами.
-4. Озвучка, субтитры, музыкальная подложка, сведение громкости (около −14 LUFS для онлайна; проверь требования платформы курса).
+**How it is made:**
+1. Voiceover script → shot list (what is on screen for each line).
+2. Images: client's photos / licensed stock / generated (disclosed where trust matters).
+3. Edit in ffmpeg or Remotion: Ken Burns effect (slow zoom/pan), transitions, titles, captions with key points.
+4. Voiceover, subtitles, music bed, loudness mix (around −14 LUFS for online; check the course platform's requirements).
 
-**Трудоёмкость:** средняя.
+**Effort:** medium.
 
-**Подводные камни:** права на изображения (никаких картинок из поиска без лицензии); однообразие в длинных роликах — разбавляй схемами и текстовыми плашками.
+**Pitfalls:** image rights (no images from search results without a license); monotony in long videos, so mix in diagrams and text cards.
 
-## 3. PDF-курс / рабочая тетрадь
+## 3. PDF course / workbook
 
-**Подходит:** справочные материалы, чек-листы, упражнения, то, к чему возвращаются; дополнение к видео.
+**Fits:** reference material, checklists, exercises, anything people come back to; companion to videos.
 
-**Как делается:** скилл `pdf` (или HTML → PDF; в этом случае HTML-вёрстку прогони через unslop). Структура: обложка, содержание, уроки с целями, упражнения с местом для ответов, итоговая проверка, источники.
+**How it is made:** the `pdf` skill (or HTML → PDF; in that case run the HTML layout through unslop). Structure: cover, contents, lessons with goals, exercises with space for answers, final check, sources.
 
-**Трудоёмкость:** низкая–средняя. **Камни:** PDF плохо правится — если заказчик будет обновлять материал, предложи Word.
+**Effort:** low–medium. **Pitfalls:** PDFs are hard to edit. If the client will update the material, suggest Word.
 
-## 4. Word-курс (.docx)
+## 4. Word course (.docx)
 
-**Подходит:** заказчик хочет сам править, адаптировать, отдавать методистам; корпоративные регламенты.
+**Fits:** the client wants to edit, adapt and hand it to instructional designers; corporate procedures.
 
-**Как делается:** скилл `docx`. Стили заголовков (для автосодержания), единый шаблон урока, комментарии для заказчика там, где нужна его экспертиза.
+**How it is made:** the `docx` skill. Heading styles (for an automatic table of contents), one lesson template, comments for the client wherever their expertise is needed.
 
-**Трудоёмкость:** низкая. **Камни:** вёрстка проще, чем в PDF — не обещай журнальный дизайн.
+**Effort:** low. **Pitfalls:** layout is simpler than PDF, so don't promise magazine design.
 
-## 5. Слайды (.pptx)
+## 5. Slides (.pptx)
 
-**Подходит:** заказчик будет вести живые занятия/вебинары; основа для записи экрана.
+**Fits:** the client will teach live sessions or webinars; a base for screen recordings.
 
-**Как делается:** скилл `pptx`. Один слайд — одна мысль, заметки докладчика с полным текстом.
+**How it is made:** the `pptx` skill. One slide, one idea; speaker notes with the full text.
 
-## 6. Интерактивная HTML-страница
+## 6. Interactive HTML page
 
-**Подходит:** тесты, тренажёры, калькуляторы, кликабельные схемы; самопроверка.
+**Fits:** quizzes, drills, calculators, clickable diagrams; self-assessment.
 
-**Как делается:** HTML-артефакт (вопросы, мгновенная обратная связь, прогресс), затем проход unslop. Если нужен сбор результатов учеников — база данных артефакта или внешняя LMS.
+**How it is made:** an HTML artifact (questions, instant feedback, progress), then an unslop pass. If learner results must be collected, use the artifact database or an external LMS.
 
-## 7. Аудиокурс
+## 7. Audio course
 
-**Подходит:** «учиться в дороге», темы без визуала (мышление, коммуникации, языки).
+**Fits:** learning on the go; topics without visuals (thinking, communication, languages).
 
-**Как делается:** сценарий, написанный для уха (короткие фразы, повторы ключевых мыслей), озвучка, сведение, mp3 по урокам.
+**How it is made:** a script written for the ear (short sentences, key ideas repeated), voiceover, mix, one mp3 per lesson.
 
-## 8. Аватар / говорящая голова
+## 8. Avatar / talking head
 
-ИИ-аватары (HeyGen, Synthesia) — только с согласия человека, чьё лицо/голос используется, и с раскрытием. Съёмка заказчика — подготовь суфлёр-сценарий и план кадров; монтаж — скилл `it-reelsmaker` или ffmpeg.
+AI avatars (HeyGen, Synthesia) only with the consent of the person whose face/voice is used, and with disclosure. For filming the client, prepare a teleprompter script and shot plan; edit with the `it-reelsmaker` skill or ffmpeg.
 
-## 9. Как выбирать формат под урок
+## 9. Choosing a format per lesson
 
-Формат выбирается под задачу урока, а не один на весь курс:
+Pick the format for the lesson's job, not one format for the whole course:
 
-| Задача урока | Лучший формат |
+| Lesson job | Best format |
 |---|---|
-| Объяснить процесс или абстракцию | анимация |
-| Рассказать историю, кейс | фото-коллаж с озвучкой, говорящая голова |
-| Дать справку, к которой вернутся | PDF / чек-лист |
-| Отработать навык | упражнение + интерактивный тест |
-| Материал будет часто меняться | Word / текст на платформе |
+| Explain a process or abstraction | animation |
+| Tell a story or case | photo collage with voiceover, talking head |
+| Give reference material people return to | PDF / checklist |
+| Practice a skill | exercise + interactive quiz |
+| Material will change often | Word / text on the platform |
 
-Смешанный курс (видео-объяснение + PDF-конспект + тест) почти всегда лучше монохромного. Предложи такую связку, если заказчик выбрал один формат, но не настаивай.
+A mixed course (video explanation + PDF summary + quiz) is almost always better than a single-format one. Suggest that combination if the client picked one format, but don't insist.
 
-## 10. Визуальное качество (unslop)
+## 10. Visual quality (unslop)
 
-Любой визуал курса, сделанный кодом — HTML-страницы, интерактив, вёрстка PDF через HTML, сцены Remotion, обложки уроков — по умолчанию выглядит «как сделано ИИ». Скилл `unslop` (в этом репозитории: `skills/unslop/`, автор Damir Sokolovsky, CC BY 4.0) это исправляет.
+Any course visual made with code (HTML pages, interactives, PDF layout via HTML, Remotion scenes, lesson covers) looks "AI-made" by default. The `unslop` skill (in this repository: `skills/unslop/`, by Damir Sokolovsky, CC BY 4.0) fixes that.
 
-Как применять в курсе:
-- **Один раз на весь курс задай направление** по разделу Direction из `unslop/SKILL.md`: Product = курс и его обещание, Character, World — мир темы курса (курс по садоводству — земля, бумага, зелень; курс по кибербезопасности — терминал, ночная смена). Это направление становится дизайн-системой курса: цвета, шрифты, стиль иконок и сцен. Согласуй его с пользователем вместе с пилотным уроком.
-- **Пилотный урок** — прогони полный процесс unslop (аудит по `references/signs.md` → проходы). Дальше используй полученные токены как шаблон для остальных уроков.
-- **Каждый следующий материал** — короткая проверка по `references/signs.md` (polish mode), а не полный редизайн.
-- Если `unslop` установлен как плагин — вызывай его через Skill; если нет — читай `skills/unslop/SKILL.md` из этого репозитория напрямую.
-- Сохраняй указание авторства unslop в любой копии или адаптации (условие лицензии CC BY 4.0).
+How to use it in a course:
+- **Set the direction once for the whole course**, following the Direction section of `unslop/SKILL.md`: Product = the course and its promise; Character; World = the world of the course topic (a gardening course: soil, paper, green; a cybersecurity course: terminal, night shift). This direction becomes the course design system: colors, fonts, icon and scene style. Get it approved together with the pilot lesson.
+- **Pilot lesson:** run the full unslop process (audit against `references/signs.md` → passes). Then reuse the resulting tokens as the template for the other lessons.
+- **Every later piece:** a short check against `references/signs.md` (polish mode), not a full redesign.
+- If `unslop` is installed as a plugin, call it via Skill; if not, read `skills/unslop/SKILL.md` from this repository directly.
+- Keep unslop's attribution in any copy or adaptation (a condition of the CC BY 4.0 license).
